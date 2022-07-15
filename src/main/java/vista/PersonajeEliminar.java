@@ -211,14 +211,19 @@ public class PersonajeEliminar extends javax.swing.JInternalFrame {
         
         String arg;
         arg=this.jTextField2.getText();
-        if(JOptionPane.showConfirmDialog(this,"Está seguro de eliminar")==0){
+        if(JOptionPane.showConfirmDialog(this,"Está seguro de eliminar",
+                "Seleccione una opción", JOptionPane.YES_NO_CANCEL_OPTION)==0){
         this.personajeControlador.eliminar(arg);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+            JOptionPane.showMessageDialog(this, "Datos Actualizados Correctamente",
+                " Listar ", JOptionPane.INFORMATION_MESSAGE);
+
         this.actulizarTabla();
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
    private void actulizarTabla () {

@@ -181,11 +181,24 @@ public class PersonajeVentana extends javax.swing.JInternalFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
+    }
+        public static boolean valores(String datos){
+        return datos.matches("[0-9]*");
+    
+    }
+    
+    public static boolean letras(String valor){
+        return valor.matches("[a-zA-Z]+");
+    
+    
         
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        try {
                   String [] args = new String[5];
         args[0]=this.jTextField1.getText();
         args[1]=this.jComboBox1.getSelectedItem().toString();
@@ -201,15 +214,39 @@ public class PersonajeVentana extends javax.swing.JInternalFrame {
         personajeControlador.crear(args);
         
         JOptionPane.showMessageDialog(this, "Personaje guardado");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        
+        
+        }
+        catch (Exception e){
+            if(this.jTextField1.getText().equals("") || this.jTextField2.getText().equals("") || this.jTextField3.getText().equals("") || this.jTextField4.getText().equals("") ){
+                JOptionPane.showMessageDialog(this, "Rellenar campos para continuar", "Error", JOptionPane.ERROR_MESSAGE);
+            }           
 
+            if(!valores(this.jTextField2.getText().trim())){
+                JOptionPane.showMessageDialog(this, "El dato ingresado no es un valor", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            if(!valores(this.jTextField3.getText().trim())){
+                JOptionPane.showMessageDialog(this, "El dato ingresado no es un valor", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            if(!letras(this.jTextField1.getText().trim())){
+                JOptionPane.showMessageDialog(this, "Dato ingresado incorrecto, ingrese solo caracteres", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.actulizarTabla();
+        
+        if(JOptionPane.showConfirmDialog(this,"¿ Desea listar los datos ?",
+                "Seleccione una opción...", JOptionPane.YES_NO_CANCEL_OPTION)==0){
+            this.actulizarTabla();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    }
+    
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void actulizarTabla () {

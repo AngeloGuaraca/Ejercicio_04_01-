@@ -96,6 +96,12 @@ public class PersonajeModificar extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("MODIFICAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,11 +211,21 @@ public class PersonajeModificar extends javax.swing.JInternalFrame {
         this.jTextField3.setText(String.valueOf(personaje.getActor().getCodigo()));
        // this.jComboBox1.getSelectedItem().toString();
         this.jTextField4.setText(String.valueOf(personaje.getPelicula().getCodigo()));
+    }  
+        public static boolean valores (String datos){
+        return datos.matches("[0-9]*");
+    
+    }
+    
+    public static boolean letras(String valor){
+        return valor.matches("[a-zA-Z]+");
 
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+    try{
         String [] args = new String[5];
         args[0]=this.jTextField1.getText();
         args[1]=this.jComboBox1.getSelectedItem().toString();
@@ -222,6 +238,25 @@ public class PersonajeModificar extends javax.swing.JInternalFrame {
         
         JOptionPane.showMessageDialog(this, "Personaje actualizado",
                 "Modificar Personaje", JOptionPane.ERROR_MESSAGE);
+        
+      }
+        
+    catch (Exception e) {
+        if(this.jTextField1.getText().equals("") || this.jTextField2.getText().equals("") || this.jTextField3.getText().equals("") || this.jTextField4.getText().equals("") ){
+                JOptionPane.showMessageDialog(this, "Rellenar campos para continuar", "Error", JOptionPane.ERROR_MESSAGE);
+            } 
+        
+         if(!valores(this.jTextField2.getText().trim())){
+                JOptionPane.showMessageDialog(this, "El dato ingresado no es un valor", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            if(!valores(this.jTextField3.getText().trim())){
+                JOptionPane.showMessageDialog(this, "El dato ingresado no es un valor", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            if(!letras(this.jTextField1.getText().trim())){
+                JOptionPane.showMessageDialog(this, "Dato ingresado incorrecto, ingrese solo caracteres", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -229,6 +264,11 @@ public class PersonajeModificar extends javax.swing.JInternalFrame {
         this.actulizarTabla();
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
       private void actulizarTabla () {
         String [] encabezado = new String[5];
